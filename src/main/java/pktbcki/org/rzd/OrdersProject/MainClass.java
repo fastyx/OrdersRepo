@@ -3,6 +3,9 @@ package pktbcki.org.rzd.OrdersProject;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import org.voltdb.VoltTable;
+import org.voltdb.VoltType;
+
 import pktbcki.org.rzd.OrdersProject.Database.ConnectEntity;
 import pktbcki.org.rzd.OrdersProject.Database.ConnectInterface;
 import pktbcki.org.rzd.OrdersProject.Database.ConnectToVoltDb;
@@ -17,6 +20,8 @@ public class MainClass {
 		
 		conn1.connect(userDb1);
 		
+		Products prod = new Products();
+		
 		
 		//delete content from table 'products'
 		conn1.delete("delete from products");
@@ -27,6 +32,21 @@ public class MainClass {
 		//update content in table 'products'
 		conn1.update("update products set quantity=47 where id=3");
 		//select content from table 'products'
-		conn1.select("select * from products");
+		conn1.select("select * from products",prod);
+
+		System.out.println(prod.results[0].getColumnName(0));
+		System.out.println(prod.results[0].getColumnName(1));
+		System.out.println(prod.results[0].getColumnName(2));
+		
+		System.out.println(prod.results[0].advanceRow());
+		System.out.println(prod.results[0].toJSONString());
+		
+		System.out.println(prod.results[0].toFormattedString());
+		
+		System.out.println(prod.results[0].fetchRow(2).getLong(1));
+		
+		
+		
+		//conn1.select("select * from products");
 	}
 }

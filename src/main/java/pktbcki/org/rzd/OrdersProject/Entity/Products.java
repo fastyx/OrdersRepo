@@ -1,6 +1,9 @@
 package pktbcki.org.rzd.OrdersProject.Entity;
 
+import org.voltdb.VoltTable;
+
 public class Products {
+	public  VoltTable results[];
 	private Long id;
 	private Long price;
 	private Long quantity;
@@ -37,6 +40,10 @@ public class Products {
 	public void setOverview(String overview) {
 		this.overview = overview;
 	}
-	
-	
+	public VoltTable getResults(int i) {
+		return results[i];
+	}
+	public void setResults(VoltTable[] results) {
+		this.results = results;
+	}	
 }
