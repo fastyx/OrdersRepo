@@ -6,14 +6,15 @@ import org.voltdb.VoltTable;
 
 import pktbcki.org.rzd.OrdersProject.Entity.Products;
 
-public interface ConnectInterface {
+public interface DbInterface {
 	
-	void connect(ConnectEntity userDb);
+	void connect(ConnectEntity userDb);	
 	
-	void disconnect();
+	void disconnect(ConnectEntity userDb);	
 	
 	void insert(String query);
 	void update(String query);
 	void delete(String query);
-	void select(String query,Products prod);
+	//List<?> select (String query);	//products and orders
+	VoltTable[] select (String query);
 }

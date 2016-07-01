@@ -14,10 +14,7 @@ import org.voltdb.client.ProcedureCallback;
 
 import pktbcki.org.rzd.OrdersProject.Entity.Products;
 
-public class ConnectToVoltDb extends CRUDToVoltDB {
-
-	
-	//ConnectEntity userDb = new ConnectEntity("192.168.122.129", 21212, "admin", "admin");
+public class ConnectToDb extends CRUDToDb {
 
 	public void connect(ConnectEntity userDb) {
 		
@@ -28,16 +25,19 @@ public class ConnectToVoltDb extends CRUDToVoltDB {
 			
 			System.out.println("Connection successes!!!");
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	public void disconnect() {
-		// TODO Auto-generated method stub
-		
+	public void disconnect(ConnectEntity userDb) {
+		try {
+			client.close();
+			
+			System.out.println("Disconnection successes!!!");
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}		
 	}
 }
